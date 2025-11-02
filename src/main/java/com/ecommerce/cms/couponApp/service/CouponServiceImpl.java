@@ -234,6 +234,10 @@ public class CouponServiceImpl implements CouponService{
 					double threshold = ((Number)details.getOrDefault("threshold", 0.0)).doubleValue();
 					double discountpct = ((Number)details.getOrDefault("discount", 0.0)).doubleValue();
 					
+					if (threshold <= 0) {
+				        throw new IllegalArgumentException("Invalid threshold: must be greater than 0.");
+				    }
+					
 					if(OriginaltotalAmt > threshold) {
 						totalDiscount = (OriginaltotalAmt * discountpct) /100.0;
 						
